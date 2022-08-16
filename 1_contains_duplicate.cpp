@@ -28,10 +28,19 @@ Constraints:
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
-		std::unordered_map<int, int> nums;
-		for (auto &i: nums) {
+		std::unordered_map<int, bool> num_map;;
+		std::vector<int>::iterator it;
+
+		for (it = nums.begin(); it != nums.end(); ++it) {
+			if (num_map.count(*it) == 0) {
+				// not found
+				num_map[*it] = true;
+			} else {
+				// found
+				return true;
+			}
 
 		}
-        
+		return false;
     }
 };
