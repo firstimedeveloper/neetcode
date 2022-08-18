@@ -1,7 +1,7 @@
 /*
 Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
 
- 
+
 
 Example 1:
 
@@ -15,7 +15,7 @@ Example 3:
 
 Input: nums = [1,1,1,3,3,4,3,2,4,2]
 Output: true
- 
+
 
 Constraints:
 
@@ -23,11 +23,13 @@ Constraints:
 -109 <= nums[i] <= 109
 */
 
-#include <bits/stdc++.h>
+#include <vector>
+#include <unordered_map>
+#include <iostream>
 
 class Solution {
 public:
-    bool containsDuplicate(vector<int>& nums) {
+    bool containsDuplicate(std::vector<int>& nums) {
 		std::unordered_map<int, bool> num_map;;
 		std::vector<int>::iterator it;
 
@@ -44,3 +46,15 @@ public:
 		return false;
     }
 };
+
+int main() {
+	std::vector<int> nums = {1, 2, 3, 4, 5, 1};
+
+	Solution	sol;
+	bool		ans;
+
+	ans = sol.containsDuplicate(nums);
+	std::cout << "solution: " << ans << std::endl;
+
+	return 0;
+}
