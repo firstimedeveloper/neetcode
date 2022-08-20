@@ -37,8 +37,8 @@ public:
 			sort(sorted.begin(), sorted.end());
 			anagrams[sorted].push_back(strs[i]);
 		}
-		for (auto &anagram: anagrams) {
-			ret.push_back(anagram.second);
+		for (auto i=anagrams.begin(); i != anagrams.end(); ++i) {
+			ret.push_back(i->second);
 		}
 		return ret;
     }
