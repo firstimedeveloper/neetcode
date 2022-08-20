@@ -30,32 +30,17 @@ public:
 
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
 		vector<vector<string>> ret;
-		vector<string> anagrams;
-		vector<string>::iterator it;
-		string	next;
-		string	prev;
+		unordered_map<string, vector<string>> anagrams;
 
-		prev = strs.front();
-		ret.push_back(vector<string>{prev});
-		sort(prev.begin(), prev.end());
-		anagrams.push_back(prev);
-
-		for (it = ++strs.begin(); it != strs.end(); ++it) {
-			int found = false;
-			next = *it;
-			sort(next.begin(), next.end());
-			for (size_t i=0; i<anagrams.size(); ++i) {
-				if (anagrams[i] == next) {
-					ret[i].push_back(*it);
-					found = true;
-				}
-			}
-			if (!found) {
-				ret.push_back(vector<string>{*it});
-				anagrams.push_back(next);
-			}
+		for (size_t i=0; i<strs.size(); ++i) {
+			string sorted = strs[i];
+			sort(sorted.begin(), sorted.end());
+			anagrams[sorted].push_back(strs[i]);
 		}
-        return ret;
+		for (auto &anagram: anagrams) {
+			ret.push_back(anagram.second);
+		}
+		return ret;
     }
 };
 
