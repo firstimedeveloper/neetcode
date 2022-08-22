@@ -25,13 +25,12 @@ public:
 
 		for (auto i = nums.begin(); i != nums.end(); ++i) {
 			if (!nums_set.count(*i-1)) {
-				vector<int> temp;
+				// vector<int> temp;
 				int j = 0;
 				while (nums_set.count(*i+j)) ++j;
 				if (j > max)
 					max = j;
 			}
-
 		}
 		return max;
 	}
@@ -42,5 +41,5 @@ int main() {
 	// vector<int> nums = {100,4,200,1,3,2};
 	vector<int> nums = {0,3,7,2,5,8,4,6,0,1};
 	Solution sol;
-	cout << sol.longestConsequtive(nums);
+	cout << sol.longestConsecutive(nums);
 }
