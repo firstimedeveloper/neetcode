@@ -34,23 +34,21 @@ class Solution {
 public:
 	vector<int> twoSum(vector<int> &nums, int target) {
 		vector<int> ret;
+		int left = 0;
+		int right = nums.size() - 1;
 
-		for (size_t i=0; i<nums.size()-1; ++i) {
-			int find = target - nums[i];
-			int left = i + 1;
-			int right = nums.size();
-			while (left < right) {
-				int mid = left + (right - left) / 2;
-				if (find == nums[mid]) {
-					ret.push_back(i + 1);
-					ret.push_back(mid + 1);
-					return ret;
+		while (true) {
+			if (nums[left] + nums[right] > target) right--;
+			else if (nums[left] + nums[right] < target) left++;
+			else {
+				if (nums[left] <= nums[right]) {
+					ret.push_back(left + 1);
+					ret.push_back(right + 1);
+				} else {
+					ret.push_back(right + 1);
+					ret.push_back(left + 1);
 				}
-				if (find < nums[mid])
-					right = mid;
-				else
-					left = mid + 1;
-
+				return ret;
 			}
 		}
 		return ret;
@@ -65,14 +63,14 @@ void print_vector(vector<int> nums) {
 }
 
 int main() {
-	vector<int> nums = {2, 7, 11, 15};
-	int target = 9;
+	//vector<int> nums = {2, 7, 11, 15};
+	//int target = 9;
 
 	// vector<int> nums = {2,3,4};
 	// int target = 6;
 
-	//vector<int> nums = {-1, 0};
-	//int target = -1;
+	vector<int> nums = {-1,-1, 0, 0, 1, 1, 2};
+	int target = -2;
 
 	Solution sol;
 
