@@ -34,10 +34,12 @@ public:
 	bool isPalindrome(string s) {
 
 		// cout << s << endl;
-		stripNonAlpha(s);
+		// stripNonAlpha(s);
 		// cout << s << endl;
 		int i = 0, j = s.size()-1;
 		while (i < j) {
+			while (!isalnum(s[i]) && i < j) i++;
+			while (!isalnum(s[j]) && i < j) j--;
 			if (tolower(s[i++]) != tolower(s[j--]))
 				return false;
 		}
@@ -47,7 +49,7 @@ public:
 
 int main() {
 	
-	// jstring s = "A man, a plan, a canal: Panama";
+	// string s = "A man, a plan, a canal: Panama";
 	string s = "0P";
 
 	Solution sol;
