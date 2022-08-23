@@ -33,25 +33,15 @@ using namespace std;
 class Solution {
 public:
 	vector<int> twoSum(vector<int> &nums, int target) {
-		vector<int> ret;
 		int left = 0;
 		int right = nums.size() - 1;
 
-		while (true) {
+		while (left < right) {
 			if (nums[left] + nums[right] > target) right--;
 			else if (nums[left] + nums[right] < target) left++;
-			else {
-				if (nums[left] <= nums[right]) {
-					ret.push_back(left + 1);
-					ret.push_back(right + 1);
-				} else {
-					ret.push_back(right + 1);
-					ret.push_back(left + 1);
-				}
-				return ret;
-			}
+			else return {left + 1, right + 1};
 		}
-		return ret;
+		return {};
 	}
 };
 
