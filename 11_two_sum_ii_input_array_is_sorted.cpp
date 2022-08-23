@@ -37,12 +37,20 @@ public:
 
 		for (size_t i=0; i<nums.size()-1; ++i) {
 			int find = target - nums[i];
-			for (size_t j=i+1; j<nums.size(); ++j) {
-				if (nums[j] == find) {
+			int left = i + 1;
+			int right = nums.size();
+			while (left < right) {
+				int mid = left + (right - left) / 2;
+				if (find == nums[mid]) {
 					ret.push_back(i + 1);
-					ret.push_back(j + 1);
+					ret.push_back(mid + 1);
 					return ret;
 				}
+				if (find < nums[mid])
+					right = mid;
+				else
+					left = mid + 1;
+
 			}
 		}
 		return ret;
