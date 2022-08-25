@@ -28,42 +28,39 @@ class Solution {
 public:
 	int trap(vector<int>& height) {
 		int total = 0;
-		vector<int> max_left;
-		vector<int> max_right;
-		vector<int> min_lr;
 
-		int max_height = 0;
-		for (auto i=height.begin(); i != height.end(); ++i) {
-			max_left.push_back(max_height);
-			max_height = max(max_height, *i);
+		int l = 0;
+		int r = height.size()-1;
+		int lmax = height[l];
+		int rmax = height[r];
+		while (l < r) {
+			if (lmax <= rmax) {
+				l++;
+				total += max(0, lmax - height[l]);
+				lmax = max(lmax, height[l]);
+			} else {
+				r--;
+				total += max(0, rmax - height[r]);
+				rmax = max(rmax, height[r]);
+			}
+
+
 		}
-		max_height = 0;
-		for (auto i=height.rbegin(); i != height.rend(); ++i) {
-			max_right.push_back(max_height);
-			max_height = max(max_height, *i);
-		}
-		for (size_t i=0; i<height.size(); ++i) {
-			min_lr.push_back(min(max_left[i], max_right[height.size() - i - 1]));
-		}
-		for (size_t i=0; i<height.size(); ++i) {
-			total += max(0, min_lr[i] - height[i]);
-		}
-		print(height);
-		print(max_left);
-		print(vector<int>{max_right.rbegin(), max_right.rend()});
-		print(min_lr);
 		return total;
 	}
 };
-// 0 > 1 FALSE
-// 1 > 0 True
-// 	1
+// lmax: 0 1
+// rmax: 1
+//	  l: 1
+//	  r: 2
 
 int main() {
 	Solution sol;
 	vector<int> height;
-	// height = {4,2,0,3,2,5}; 
-	height = {0,1,0,2,1,0,1,3,2,1,2,1};
+	height = {4,2,0,3,2,5}; 
+	//        0 0 1 1 2 2 2 2 3 3 3 3
+	//        3 3 3 3 3 3 3 2 2 2 1 0
+	//height = {0,1,0,2,1,0,1,3,2,1,2,1};
 	//height = {4,2,3};
 	cout << sol.trap(height);
 }
