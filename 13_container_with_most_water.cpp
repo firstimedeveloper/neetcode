@@ -28,12 +28,11 @@ public:
 		int minHeight = min(height[l], height[r]);
 		int maxArea = (r - l) * minHeight;
 		while (l + 1 < r && l < r - 1) {
-			if (height[l] < height[r]) {
+			if (height[l] < height[r])
 				// move left pointer
 				l++;
-			} else {
+			else
 				r--;
-			}
 			int temp = (r - l) * min(height[l], height[r]);
 			if (temp > maxArea) maxArea = temp;
 		}
