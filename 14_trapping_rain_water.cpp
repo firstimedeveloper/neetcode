@@ -34,6 +34,12 @@ public:
 		int lmax = height[l];
 		int rmax = height[r];
 		while (l < r) {
+			// check which wall is taller. left or right.
+			// The smaller side is the bottleneck, meaning,
+			// whatever value the right wall is doesn't really matter.
+			// The current block becomes the left pointer if left wall is the bottleneck, and vice versa.
+			// We check if the current block is smaller than the bottlenecked wall.
+			// if the current block is smaller, the subtracted value is added to the total.
 			if (lmax <= rmax) {
 				l++;
 				total += max(0, lmax - height[l]);
@@ -43,8 +49,6 @@ public:
 				total += max(0, rmax - height[r]);
 				rmax = max(rmax, height[r]);
 			}
-
-
 		}
 		return total;
 	}
