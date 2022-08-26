@@ -26,7 +26,7 @@ using namespace std;
 class Solution {
 public:
 	int lengthOfLongestSubstring(string s) {
-        vector<int> alpha(255, 0);
+        int alpha[127] = {0};
 		size_t ret = 0;
 		size_t l = 0;
 		size_t r = 0;
