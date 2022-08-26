@@ -26,22 +26,18 @@ using namespace std;
 class Solution {
 public:
 	int lengthOfLongestSubstring(string s) {
-		unordered_set<int> alpha;
+        vector<int> alpha(255, 0);
 		size_t ret = 0;
 		size_t l = 0;
 		size_t r = 0;
 		while (r < s.size()) {
-			if (alpha.count(s[r])) {
-				while (s[l] != s[r])
-						alpha.erase(s[l++]);
-				alpha.erase(s[l++]);
-			} else {
-				alpha.insert(s[r++]);
-				ret = max(ret, r - l);
+			while (alpha[s[r]])
+				alpha[s[l++]]--;
+			ret = max(ret, r - l + 1);
+            alpha[s[r++]]++;
 
-			}
 		}
-		return max(ret, r - l);
+		return ret;
 	}
 };
 
