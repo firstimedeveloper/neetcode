@@ -38,9 +38,11 @@ public:
 		int ret = 0;
 		int l = 0;
 		int r;
+		int max_freq = 0;
 		for (r=0; r<(int)s.size(); ++r) {
 			alpha[s[r] - 'A']++;
-			while (r - l + 1 - findMax() > k) {
+			max_freq = max(max_freq, alpha[s[r] - 'A']);
+			while (r - l + 1 - max_freq > k) {
 			cout << l << " " << r << " ";
 			cout << s.substr(l, r - l + 1) << " " << findMax() << " " << ret << endl;
 				alpha[s[l++] - 'A']--;
