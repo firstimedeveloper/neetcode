@@ -5,8 +5,6 @@ The testcases will be generated such that the answer is unique.
 
 A substring is a contiguous sequence of characters within the string.
 
- 
-
 Example 1:
 
 Input: s = "ADOBECODEBANC", t = "ABC"
