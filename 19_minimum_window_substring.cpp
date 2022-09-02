@@ -74,17 +74,22 @@ public:
 		*/
 
 		for (; l<(int)s.size();) {
-			print_alpha(a_t);
-			print_alpha(a_s);
-			cout << "need: " << need << " have: " << have << endl;
+			cout << s.substr(l, r-l) << endl;
+			cout << '\t'; print_alpha(a_t);
+			cout << '\t'; print_alpha(a_s);
+			cout << '\t' << "need: " << need << " have: " << have << endl;
+			if (have != need && r >= (int)s.size())
+				break ;
 
 			if (have == need) {
 				idx = s[l] - 'A';
-				ret_l = l;
-				ret_len = r - l;
+				if (!ret_len || r - l < ret_len) {
+					ret_l = l;
+					ret_len = r - l;
+				}
 
 				cout << s.substr(ret_l, ret_len) << endl;
-				if (a_t[idx] && a_s[idx] >= a_t[idx])
+				if (a_t[idx] && a_s[idx] >= a_t[idx] && a_s[idx] - 1 < a_t[idx])
 					have--;
 				a_s[idx]--;
 				l++;
