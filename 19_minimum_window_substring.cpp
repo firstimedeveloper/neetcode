@@ -32,3 +32,79 @@ window pos(l, r) = (-1, -1) ""
 repeat until r == s.size()
 return pos
 */ 
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class Solution {
+public:
+	void print_alpha(int *s) {
+	
+		for (int i=0; i<58; ++i) {
+			if (s[i])
+				cout << (char)('A' + i) << s[i] << " ";
+		}
+		cout << endl;
+	}
+	string minWindow(string s, string t) {
+		int idx;
+		int ret_l = 0;
+		int ret_len = 0;
+		int l = 0;
+		int r = 0;
+		int have = 0;
+		int need = 0;
+		int a_s[58] = {0};
+		int a_t[58] = {0};
+		for (auto c: t) {
+			idx = c - 'A';
+			a_t[idx]++;
+			need++;
+		}
+		/*
+		while (r < (int)t.size() && have != need) {
+			if (have == need) break ;
+			idx = s[r] - 'A';
+			if (a_s[idx] && a_s[idx] < a_t[idx])
+				have++;
+			a_s[idx]++;
+			r++;	
+		} 
+		*/
+
+		for (; l<(int)s.size();) {
+			print_alpha(a_t);
+			print_alpha(a_s);
+			cout << "need: " << need << " have: " << have << endl;
+
+			if (have == need) {
+				idx = s[l] - 'A';
+				ret_l = l;
+				ret_len = r - l;
+
+				cout << s.substr(ret_l, ret_len) << endl;
+				if (a_t[idx] && a_s[idx] >= a_t[idx])
+					have--;
+				a_s[idx]--;
+				l++;
+			} else {
+				idx = s[r] - 'A';
+				if (a_s[idx] < a_t[idx] && a_s[idx] + 1 <= a_t[idx])
+					have++;
+				a_s[idx]++;
+				r++;
+			}
+			
+		}
+		return s.substr(ret_l, ret_len);
+	}
+};
+
+int main() {
+	string s = "ADOBECODEBANC", t = "ABC";
+
+	Solution sol;
+	string ret = sol.minWindow(s, t);
+	cout << "answ: " << ret << endl;
+}
