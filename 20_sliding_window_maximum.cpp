@@ -28,7 +28,18 @@ class Solution {
 public:
 	/*
 	 *
+	 * Using a monotonic queue, where the elements inside the queue are in decreasing order.
+	 * loop r is less than len(nums):
+	 * 	loop q is not empty and current r is greater than back of q:
+	 * 		pop q
+	 * 	push r idx to q.
+	 * 	if l idx is greater than front of q:
+	 * 		pop front of q.
 	 *
+	 * 	if r+1 >= k:
+	 * 		push_back front of q to ret
+	 * 		incr l
+	 * 	incr r
 	 *
 	 */
 	vector<int> maxSlidingWindow(vector<int>& nums, int k) {
