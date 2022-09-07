@@ -1,5 +1,10 @@
 class Solution {
 public:
+
+	// 1d idx --> 2d idx
+	// 		c = array[0].size();
+	// 		val = 1d_idx;
+	// 		2d_idx = [val/c][val%c];
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
 		int r = matrix.size();
 		int c = matrix[0].size();
