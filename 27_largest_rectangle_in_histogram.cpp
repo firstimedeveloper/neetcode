@@ -6,7 +6,6 @@ public:
 		for (int i=0; i<heights.size(); ++i) {
             int start = i;
             while (!s.empty() && heights[i] < s.top().first) {
-                printf("%d-%d x %d = %d\n", i, s.top().second, s.top().first, (i - s.top().second) * s.top().first);
                 ret = max(ret, (i - s.top().second) * s.top().first);
                 start = s.top().second;
                 s.pop();
@@ -15,7 +14,6 @@ public:
 		}
         int i = heights.size();
         while (!s.empty()) {
-            printf("%d-%d x %d = %d\n", i, s.top().second, s.top().first, (i - s.top().second) * s.top().first);
             ret = max(ret, (i - s.top().second) * s.top().first);
 			s.pop();
         }
