@@ -1,5 +1,14 @@
 class Solution {
 public:
+	// Implement a binary search where left = 0, right is the size of the nums vector
+	// since we know the range of the nums is not changed, only the starting point.
+	// We only nee to find the starting point of the nums vector to be able to shift
+	// when indexing the nums vector.
+	//
+	// first find the k, starting point of the sorted array.
+	// use the generic binary search template, except when indexing from the nums vector,
+	// use the formula nums[(mid + k) % nums.size()].
+	// since this will find the actual value we're looking for.
     int search(vector<int>& nums, int target) {
 		int k = 0;
 		int prev = nums[0];
