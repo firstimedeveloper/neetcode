@@ -2,8 +2,8 @@ class Solution {
 public:
     int search(vector<int>& nums, int target) {
 		int l = 0;
-		int r = nums.size() - 1;
-		while (l <= r) {
+		int r = nums.size();
+		while (l < r) {
 			int mid = l + (r - l) / 2;
 			if (target == nums[mid])
 				return mid;
@@ -13,12 +13,12 @@ public:
 				else if (target < nums[l])
 					l = mid + 1;
 				else
-					r = mid - 1;
+					r = mid;
 			} else {
 				if (target < nums[mid])
-					r = mid - 1;
-				else if (target > nums[r])
-					r = mid -1;
+					r = mid;
+				else if (target > nums[r-1])
+					r = mid;
 				else
 					l = mid + 1;
 			}
