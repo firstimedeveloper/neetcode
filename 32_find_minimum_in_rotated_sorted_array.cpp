@@ -1,3 +1,5 @@
+#include <bits/stdc++.h>
+using namespace std;
 class Solution {
 public:
     int findMin(vector<int>& nums) {
@@ -6,7 +8,7 @@ public:
         
         while (l <= r) {
             int mid = l + (r - l) / 2;
-            cout << nums[mid];
+			printf("%d %d %d\n", l, mid, r);
             if (mid != 0 && nums[mid-1] > nums[mid])
                 return nums[mid];
             if (nums[l] <= nums[mid]) {
@@ -22,3 +24,9 @@ public:
         return nums[l];
     }
 };
+
+int main() {
+	Solution sol;
+	vector<int> nums = {4,5,6,7,0,1,2};
+	cout << sol.findMin(nums);
+}
