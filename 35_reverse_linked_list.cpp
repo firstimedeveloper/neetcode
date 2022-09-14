@@ -6,14 +6,14 @@ public:
         
     
         prev = NULL;
-        while (head->next) {
-            temp = head->next;
-            head->next = prev;
-            head = temp;
+        while (head) {
+            if (prev)
+                printf("%d %d\n", head->val, prev->val);
+            temp = head->next; // save next value to temp
+            head->next = prev; // cur head's next is set to prev
+            prev = head; // prev is updated to head
+            head = temp; // head = head->next
         }
-
-        return head;
+        return prev;
     }
 };
-
-
