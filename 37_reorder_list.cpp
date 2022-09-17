@@ -11,32 +11,55 @@ struct ListNode {
 };
 class Solution {
 public:
-    void reorderList(ListNode* head) {
-		ListNode *ret = new ListNode();
+	void reverseList(ListNode **head) {
+		ListNode *prev = NULL;
 		ListNode *temp;
-		vector<ListNode *> lst;
 
-		while (head) {
-			lst.push_back(head);
-            head = head->next;
+		while (*head) {
+			temp = (*head)->next;
+			(*head)->next = prev;
+			prev = *head;
+			*head = temp;
 		}
+		*head = prev;
+	}
 
-		int len = lst.size();
-		int l = 0;
-		int r = len - 1;
-
-        temp = ret;
-		while (l <= r) {
-			printf("%d %d\n", l, lst[l]->val);
-			ret->next = lst[l++];
-			ret = ret->next;
-			if (l > r) break ;
-            printf("%d %d\n", r, lst[r]->val);
-			ret->next = lst[r--];
-			ret = ret->next;
+    void reorderList(ListNode *head) {
+		ListNode *tail = head;
+		ListNode *temp = head;
+		int n = 0;
+		while (temp) {
+			printf("%d ", temp->val);
+			temp = temp->next;
+			n++;
 		}
-		ret->next = NULL;
-        head = temp->next;
+		printf("\n");
+		int i = 0;
+		while (tail->next && i < n / 2) {
+			printf("%d ", tail->val);
+			tail = tail->next;
+			i++;
+		}
+		temp = tail->next;
+		tail->next = NULL;
+		tail = temp;
+		printf("\n");
+		reverseList(&tail);
+
+		ListNode *cur = tail;
+		while (cur) {
+			printf("%d ", cur->val);
+			cur = cur->next;
+		}
+		printf("\n");
+		while (tail) {
+			temp = head->next;
+			head->next = tail;
+			tail = tail->next;
+			head = head->next;
+			head->next = temp;
+			head = head->next;
+		}
     }
 };
 
@@ -45,16 +68,25 @@ int main() {
 	ListNode *l2 = new ListNode(2);
 	ListNode *l3 = new ListNode(3);
 	ListNode *l4 = new ListNode(4);
+	ListNode *l5 = new ListNode(5);
 	l1->next = l2;
 	l2->next = l3;
 	l3->next = l4;
+	l4->next = l5;
 
 	Solution sol;
 
-	sol.reorderList(l1);
-	while (l1) {
-		printf("%d ", l1->val);
-		l1 = l1->next;
+	ListNode *cur = l1;
+	while (cur) {
+		printf("%d ", cur->val);
+		cur = cur->next;
 	}
+	printf("\n");
+	sol.reorderList(l1);
 
+	cur = l1;
+	while (cur) {
+		printf("%d ", cur->val);
+		cur = cur->next;
+	}
 }
