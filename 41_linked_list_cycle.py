@@ -9,14 +9,9 @@ class Solution:
         l = head
         r = head
         
-        while l and r:        
+        while l and r and r.next:
             l = l.next
-            if not l:
-                return False
-            if r and r.next and r.next:
-                r = r.next.next
-            else:
-                return False
+            r = r.next.next
             if l == r:
                 return True
         return False
