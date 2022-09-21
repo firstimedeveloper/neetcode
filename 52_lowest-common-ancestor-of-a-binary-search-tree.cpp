@@ -8,6 +8,12 @@
  * };
  */
 
+
+// Idea: root node is always an ancestor.
+// So recursive go down the BST, checking each node if it is an ancestor of the
+// two given nodes (by checking the values).
+// Keep going until you reach a node that is not an ancestor.
+// The last ancestor will be the lowest common ancestor.
 class Solution {
 public:
     void check(TreeNode *r, TreeNode *p, TreeNode *q, int &count) {
